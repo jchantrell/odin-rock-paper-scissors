@@ -8,41 +8,89 @@
 </head>
 <body>
     <script>
-        // 
+
         //  -- game logic --
-        //  
-        function winConditions(){}
-        //  if playerSelection(rock) && computerSelection(rock) return draw()
-        //  if playerSelection(rock) && computerSelection(paper) return loss()
-        //  if playerSelection(rock) && computerSelection(scissors) return win()
-        //  if playerSelection(paper) && computerSelection(rock) return win()
-        //  if playerSelection(paper) && computerSelection(paper) return draw()
-        //  if playerSelection(paper) && computerSelection(scissors) return loss()
-        //  if playerSelection(scissors) && computerSelection(rock) return loss()
-        //  if playerSelection(scissors) && computerSelection(paper) return win()
-        //  if playerSelection(scissors) && computerSelection(scissors) return draw()
-        //
-        //function win(){}
-        // +1 for win counter
-        //
-        //function draw(){}
-        // +1 for draw counter
-        //
-        //function loss(){}
-        // +1 for loss counter
-        //
-        // let scoreboard()
-        // receives updates via win(), draw(), loss() functions.
-        // displays like "W 1| L 1 | D 0"
-        //
-        // function replay()
-        // clear playerSelection and computerSelection
-        // initiate gameStart() which starts the game again
-        // keep scoreboard
-        //
-        // -- gameplay --
-        //
-    
+ 
+        function winConditions(){
+          if (playerSelection == "rock" && computerSelection == "rock"){
+              draw()
+          }
+          if (playerSelection == "rock" && computerSelection == "paper"){
+              loss()
+          }
+          if (playerSelection == "rock" && computerSelection == "scissors"){
+              win()
+          }
+          if (playerSelection == "paper" && computerSelection == "rock"){
+              win()
+          }
+          if (playerSelection == "paper" && computerSelection == "paper"){
+              draw()
+          }
+          if (playerSelection == "paper" && computerSelection == "scissors"){
+              loss()
+          }
+          if (playerSelection == "scissors" && computerSelection == "rock"){
+              loss()
+          }
+          if (playerSelection == "scissors" && computerSelection == "paper"){
+              win()
+          }
+          if (playerSelection == "scissors" && computerSelection == "scissors"){
+              draw()
+          }
+        }
+
+        // -- game functions --
+
+        function playGame(){
+            gameStart()
+        }
+
+        function gameStart(){
+            computerPlay()
+            playerPlay()
+            decideOutcome()
+        }
+
+        function decideOutcome(){
+            winConditions()
+        }
+
+        function replay(){
+            playerSelection = null // 
+            computerSelection = null // is this necessary?
+            printScore()
+            gameStart()
+        }
+
+        function win(){
+            console.log("Player wins.")
+            scoreboard.wins += 1;
+            replay()
+        } 
+
+        function draw(){
+            console.log("Draw.")
+            scoreboard.draws += 1;
+            replay()
+        }
+
+        function loss(){
+            console.log("Player loses.")
+            scoreboard.losses += 1;
+            replay()
+        }
+
+        let scoreboard = {
+            wins: 0,
+            losses: 0,
+            draws: 0
+        };
+
+        function printScore() {
+            console.log(`Wins: ${scoreboard.wins} || Losses: ${scoreboard.losses} || Draws: ${scoreboard.draws} `)
+        }
 
         let playerSelection = "no selection" 
         let computerSelection = "no selection" 
@@ -78,35 +126,11 @@
                 if (randomNumber == 3) {
                     computerSelection = "scissors"
             }
-            console.log("Computer chose " + computerSelection)
         }
 }
-        function gameStart(){
-            computerPlay()
-            playerPlay()
-            decideOutcome()
-        }
 
-
-        function decideOutcome(){
-            winConditions()
-        }
+gameStart()
         
-
-
-        // use math.Random (1-3) to choose RPS, store in computerSelection
-        // computerSelection(rock, paper, scissors) - variable
-        //
-        // playerPlay() - function
-        // ask for user input by prompt, only accept "rock", "paper", "scissors" (capitalisation doesnt matter)
-        // if not any of the above inputs return "sorry, that isn't rock paper or scissors"
-        // store selection in playerSelection
-        // playerSelection(rock, paper, scissors) - variable
-        //
-        // decideOutcome() - function
-        // compare playerSelection and computerSelection using winConditions logic and apply outcome
-        // once above is finished, call replay to start again
-        // 
     </script>
 </body>
 </html> 
