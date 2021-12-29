@@ -11,7 +11,7 @@
 
         //  -- game logic --
  
-        function winConditions(){
+        function decideOutcome(){
           if (playerSelection == "rock" && computerSelection == "rock"){
               draw()
           }
@@ -51,10 +51,6 @@
             computerPlay()
             playerPlay()
             decideOutcome()
-        }
-
-        function decideOutcome(){
-            winConditions()
         }
 
         function replay(){
@@ -128,8 +124,6 @@
             }
         }
 }
-
-gameStart()
         
     </script>
 </body>
