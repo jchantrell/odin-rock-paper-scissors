@@ -1,0 +1,65 @@
+ @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body {
+    font-family: Roboto;
+    font-size: 24px;
+    background: thistle;
+    margin:0;
+    padding:0;
+}
+
+.header {
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 24px;
+    background: darkslateblue;
+    padding: 25px;
+    color: whitesmoke;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 80%;
+}
+
+.result {
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    padding: 15px 15px 15px 15px;
+    margin: 50px 30% 0 30%;
+    gap: 25px;
+}
+
+.wins, .draws, .losses {
+    height: 40px;
+    width: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0%;
+}
+
+.choiceContainer {
+    display: flex;
+    justify-content: center;
+    padding: 15px 15px 45px 15px;
+    gap: 50px;
+}
+
+.rock, .paper, .scissors {
+    background: bisque;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25%;
+}
