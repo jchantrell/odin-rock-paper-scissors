@@ -1,130 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <script>
-
-        //  -- game logic --
- 
-        function decideOutcome(){
-          if (playerSelection == "rock" && computerSelection == "rock"){
-              draw()
-          }
-          if (playerSelection == "rock" && computerSelection == "paper"){
-              loss()
-          }
-          if (playerSelection == "rock" && computerSelection == "scissors"){
-              win()
-          }
-          if (playerSelection == "paper" && computerSelection == "rock"){
-              win()
-          }
-          if (playerSelection == "paper" && computerSelection == "paper"){
-              draw()
-          }
-          if (playerSelection == "paper" && computerSelection == "scissors"){
-              loss()
-          }
-          if (playerSelection == "scissors" && computerSelection == "rock"){
-              loss()
-          }
-          if (playerSelection == "scissors" && computerSelection == "paper"){
-              win()
-          }
-          if (playerSelection == "scissors" && computerSelection == "scissors"){
-              draw()
-          }
-        }
-
-        // -- game functions --
-
-        function playGame(){
-            gameStart()
-        }
-
-        function gameStart(){
-            computerPlay()
-            playerPlay()
-            decideOutcome()
-        }
-
-        function replay(){
-            playerSelection = null // 
-            computerSelection = null // is this necessary?
-            printScore()
-            gameStart()
-        }
-
-        function win(){
-            console.log("Player wins.")
-            scoreboard.wins += 1;
-            replay()
-        } 
-
-        function draw(){
-            console.log("Draw.")
-            scoreboard.draws += 1;
-            replay()
-        }
-
-        function loss(){
-            console.log("Player loses.")
-            scoreboard.losses += 1;
-            replay()
-        }
-
-        let scoreboard = {
-            wins: 0,
-            losses: 0,
-            draws: 0
-        };
-
-        function printScore() {
-            console.log(`Wins: ${scoreboard.wins} || Losses: ${scoreboard.losses} || Draws: ${scoreboard.draws} `)
-        }
-
-        let playerSelection = "no selection" 
-        let computerSelection = "no selection" 
-
-
-        function playerPlay(){
-            let userPrompt = prompt("Rock, paper or scissors?");
-
-            while (userPrompt !== 'rock' && userPrompt !== 'paper' && userPrompt !== 'scissors') {
-                userPrompt= prompt('Try again. Rock, paper or scissors?');}
-            if (userPrompt == "rock"){
-                playerSelection = "rock"
-            }
-            if (userPrompt == "paper"){
-                playerSelection = "paper"
-            }
-            if (userPrompt == "scissors"){
-                playerSelection = "rock"
-            }
-            console.log("Player chose " + playerSelection)
-
-} 
-
-        function computerPlay(){
-            randomNumber = Math.floor(Math.random() * 3) + 1; 
-            {
-                if (randomNumber == 1) {
-                    computerSelection = "rock"
-            }
-                if (randomNumber == 2) {
-                    computerSelection = "paper"
-            }    
-                if (randomNumber == 3) {
-                    computerSelection = "scissors"
-            }
-        }
-}
-        
-    </script>
+    <div class="header">
+        Rock, paper or scissors?
+    </div>
+        <div class="container">
+            <div class="result">
+                <div class=wins>Wins: 0</div>
+                <div class=draws>Draws: 0</div>
+                <div class=losses>Losses: 0</div>
+            </div>
+            <div class="choiceContainer">
+                <div class="rock">🪨</div>
+                <div class="paper">📜</div>
+                <div class="scissors">✂️</div>
+            </div>
+    </div>   
 </body>
 </html> 
