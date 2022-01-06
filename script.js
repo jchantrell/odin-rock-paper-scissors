@@ -3,9 +3,6 @@
         //  -- game logic --
  
         function decideOutcome(){
-            if (playerSelection == "rock" && computerSelection == "rock"){
-                draw()
-            }
             if (playerSelection == "rock" && computerSelection == "paper"){
                 loss()
             }
@@ -14,9 +11,6 @@
             }
             if (playerSelection == "paper" && computerSelection == "rock"){
                 win()
-            }
-            if (playerSelection == "paper" && computerSelection == "paper"){
-                draw()
             }
             if (playerSelection == "paper" && computerSelection == "scissors"){
                 loss()
@@ -27,89 +21,110 @@
             if (playerSelection == "scissors" && computerSelection == "paper"){
                 win()
             }
-            if (playerSelection == "scissors" && computerSelection == "scissors"){
+            if (playerSelection == computerSelection){
                 draw()
-            }
+            } 
           }
   
           // -- game functions --
-  
-  
-          function replay(){
-              playerSelection = null // 
-              computerSelection = null // is this necessary?
-              printScore()
 
-              userPrompt = prompt("Play again - y/n?");
-  
-              while (userPrompt !== 'y' && userPrompt !== 'n') {
-                userPrompt= prompt('Play again?');
-                }
-              if (userPrompt == "n"){
-                  return
+          function gameEnd(){
+              if (scoreboard.total >= 5){
+                  if (scoreboard.wins > scoreboard.losses){
+                      victor = "Player wins."
+                  }
+                  if (scoreboard.wins < scoreboard.losses){
+                      victor = "Computer wins."
+                  }
+                  if (scoreboard.wins == scoreboard.losses){
+                      victor = "It's a draw."
+                  }
+                  replay();
               }
-              if (userPrompt == "y"){
-                scoreboard.wins(0);
-                scoreboard.losses(0);
-                scoreboard.draws(0);
-              }
+          }
+
+          function replay(){
+              scoreboard.wins = 0,
+              scoreboard.losses = 0,
+              scoreboard.draws = 0,
+              scoreboard.total = 0,
+              document.querySelector('.wins').textContent = `Win: 0`; 
+              document.querySelector('.draws').textContent = `Draws: 0`; 
+              document.querySelector('.losses').textContent = `Losses: 0`;
+              document.querySelector('.total').textContent = `Total: 0`;
+              document.querySelector('.victor').textContent = victor;
           }
   
           function win(){
               console.log("Player wins.")
               scoreboard.wins += 1;
-              printScore()
+              scoreboard.total += 1;
+              printScore();
+              gameEnd();
               //replay()
           } 
   
           function draw(){
               console.log("Draw.")
               scoreboard.draws += 1;
-              printScore()
+              scoreboard.total += 1;
+              printScore();
+              gameEnd();
               //replay()
           }
   
           function loss(){
               console.log("Player loses.")
               scoreboard.losses += 1;
-              printScore()
+              scoreboard.total += 1;
+              printScore();
+              gameEnd();
               //replay()
           }
+
+          function resetScoreboard(){
+                scoreboard.wins = 0,
+                scoreboard.losses = 0,
+                scoreboard.draws = 0,
+                scoreboard.total = 0
+            }
   
           let scoreboard = {
               wins: 0,
               losses: 0,
-              draws: 0
+              draws: 0,
+              total: 0
           };
+
   
           function printScore() {
-              console.log(`Wins: ${scoreboard.wins} || Losses: ${scoreboard.losses} || Draws: ${scoreboard.draws} `)
-
               document.querySelector('.wins').textContent = `Wins: ${scoreboard.wins}`;
 
               document.querySelector('.draws').textContent = `Draws: ${scoreboard.draws}`;
 
               document.querySelector('.losses').textContent = `Losses: ${scoreboard.losses}`; 
+
+              document.querySelector('.total').textContent = `Total: ${scoreboard.total}`; 
           }
   
-          let playerSelection = "no selection" 
-          let computerSelection = "no selection" 
 
           function playGame(userPrompt){
 
               if (userPrompt == "rock"){
                 playerSelection = "rock";
-                computerPlay();
+                document.querySelector('.playerChoice').textContent = `Player chooses 🪨 !`;
+                computerPlay();           
             }
               if (userPrompt == "paper"){
                 playerSelection = "paper";
+                document.querySelector('.playerChoice').textContent = `Player chooses 📜 !`;
                 computerPlay();
             }
               if (userPrompt == "scissors"){
                 playerSelection = "scissors";
+                document.querySelector('.playerChoice').textContent = `Player chooses ✂️ !`;
                 computerPlay();
             }
-            console.log("Player chose " + playerSelection)
             } 
   
           function computerPlay(){
@@ -117,21 +132,22 @@
               {
                   if (randomNumber == 1) {
                       computerSelection = "rock";
+                      document.querySelector('.computerChoice').textContent = `Computer chooses 🪨 !`;
                       decideOutcome();
-                      console.log("Computer chose " + computerSelection);
               }
                   if (randomNumber == 2) {
                       computerSelection = "paper";
+                      document.querySelector('.computerChoice').textContent = `Computer chooses 📜 !`;
                       decideOutcome();
-                      console.log("Computer chose " + computerSelection);
               }    
                   if (randomNumber == 3) {
                       computerSelection = "scissors";
+                      document.querySelector('.computerChoice').textContent = `Computer chooses ✂️ !`;
                       decideOutcome();
-                      console.log("Computer chose " + computerSelection);
               }
           }
   }
+  
 
           // -- ui functionality --
 
@@ -144,10 +160,5 @@
           const scissors = document.querySelector('.scissors').addEventListener("click", function(){
             playGame("scissors")
           });
-  
-          function logText(e) {
-              console.log(this.classList.value);}
-  
-  
               
   
