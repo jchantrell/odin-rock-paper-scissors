@@ -30,21 +30,31 @@ body {
 }
 
 .result {
-    font-weight: 800;
     display: flex;
     justify-content: center;
     padding: 15px 15px 15px 15px;
-    margin: 50px 30% 0 30%;
-    gap: 25px;
+    margin: 0 30% 0 30%;
+    gap: 0px;
 }
 
-.wins, .draws, .losses {
+.victor {
+    font-weight: 800;
+    font-size: 26px;
+}
+
+.wins, .draws, .losses, .total{
     height: 40px;
     width: 125px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 0%;
+    font-weight: 800;
+}
+
+.description {
+    margin-top: 40px;
+    font-weight: 800;
 }
 
 .choiceContainer {
@@ -62,4 +72,14 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 25%;
+}
+
+.playerChoice, .computerChoice {
+    height: 100px;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-style: italic;
 }
